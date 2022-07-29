@@ -1,41 +1,41 @@
 const express = require('express');
-const { populate } = require('../models/CartItem');
+const { populate } = require('../models/ArtItem');
 const router = express.Router();
-const CartItem = require('../models/CartItem');
+const ArtItem = require('../models/ArtItem');
 
-// Index: GET all the CartItems
+// Index: GET all the ArtItems
 router.get('/', async (req, res, next) => {
 	try {
-		// 1. Get all of the CartItems from the DB
-		const CartItems = await CartItem.find({});
+		// 1. Get all of the ArtItems from the DB
+		const artItems = await ArtItem.find({});
 		// 2. Send them back to the client as JSON
-		res.json(CartItems);
+		res.json(artItems);
 	} catch (err) {
 		// if there's an error, pass it on!
 		next(err);
 	}
 });
 
-// Show: Get a CartItem by ID
+// Show: Get a ArtItem by ID
 router.get('/:id', async (req, res, next) => {
 	try {
-		// 1. Find the CartItem by its unique ID
-		const CartItems = await CartItem.findById(req.params.id);
+		// 1. Find the ArtItem by its unique ID
+		const artItems = await ArtItem.findById(req.params.id);
 		// 2. Send it back to the client as JSON
-		res.json(CartItems);
+		res.json(artItems);
 	} catch (err) {
 		// if there's an error, pass it on!
 		next(err);
 	}
 });
 
-// Create: POST a CartItem
+// Create: POST a ArtItem
 router.post('/', async (req, res, next) => {
 	try {
-		// 1. Use the data in the req body to create a new CartItem
-		const newCartItem = await CartItem.create(req.body);
+		// 1. Use the data in the req body to create a new ArtItem
+		const newArtItem = await ArtItem.create(req.body);
 		// 2. If the create is successful, send back the record that was inserted, specifying 201 status for Created
-		res.status(201).json(newCartItem);
+		res.status(201).json(newArtItem);
 	} catch (err) {
 		// 3. If there was an error, pass it on!
 		next(err);
@@ -44,13 +44,13 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const updatedCartItem = await CartItem.findByIdAndUpdate(
+        const updatedArtItem = await ArtItem.findByIdAndUpdate(
             req.params.id,req.body, 
         {
             new: true}
         )
-        if(updatedCartItem){
-            res.json(updatedCartItem)
+        if(updatedArtItem){
+            res.json(updatedArtItem)
         } else {
             res.sendStatus(404)
         }
@@ -61,8 +61,8 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async(req, res, next) => {
     try {
-        const deletedCartItem = await CartItem.findByIdAndDelete(req.params.id)
-        res.json(deletedCartItem) 
+        const deletedArtItem = await ArtItem.findByIdAndDelete(req.params.id)
+        res.json(deletedArtItem) 
     } catch(err) {
         next(err)
     }
