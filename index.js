@@ -19,13 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 // Redirect
 
 app.get('/', (req, res) => {
-	res.redirect('/api/cart');
+	res.redirect('/api/art');
 });
 
 /* START CONTROLLERS HERE */
 
-const CartItemController = require('./controllers/CartItemController');
-app.use('/api/cart/', CartItemController);
+const ArtItemController = require('./controllers/ArtItemController');
+app.use('/api/art/', ArtItemController);
 
 const usersController = require('./controllers/usersController')
 app.use('/api/users', usersController)
