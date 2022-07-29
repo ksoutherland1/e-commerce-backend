@@ -1,5 +1,4 @@
 const mongoose = require('./connection');
-
 const Bookmark = require('../models/Bookmark');
 const User = require('../models/User');
 const bookmarkSeeds = require('./seeds.json');
