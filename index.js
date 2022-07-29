@@ -19,16 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 // Redirect
 
 app.get('/', (req, res) => {
-	res.redirect('/api/bookmarks');
+	res.redirect('/api/cart');
 });
 
 /* START CONTROLLERS HERE */
 
-// const bookmarksController = require('./controllers/bookmarksController');
-// app.use('/api/bookmarks/', bookmarksController);
+const CartItemController = require('./controllers/CartItemController');
+app.use('/api/cart/', CartItemController);
 
-// const usersController = require('./controllers/usersController')
-// app.use('/api/users', usersController)
+const usersController = require('./controllers/usersController')
+app.use('/api/users', usersController)
 
 /* END CONTROLLERS HERE */
 
